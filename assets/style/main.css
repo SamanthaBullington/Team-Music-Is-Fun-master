@@ -10699,6 +10699,11 @@ main {
   cursor: pointer;
 }
 
+.action:hover {
+  cursor: pointer;
+  background-color: aqua;
+}
+
 .sidebar {
   min-height: 85.5vh;
 }

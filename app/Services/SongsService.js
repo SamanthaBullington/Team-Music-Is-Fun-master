@@ -33,13 +33,17 @@ class SongsService {
    * Retrieves the saved list of songs from the sandbox
    */
   async getMySongs() {
+    const res = await sandBoxApi.get()
+    console.log(res.data)
+    ProxyState.playlist = res.data.map(s => new Song(s))
+    console.log(ProxyState.playlist)
     //TODO What are you going to do with this result
   }
 
   /**
    * Takes in a song id and sends it from the search results to the sandbox to be saved.
    * Afterwords it will update the store to reflect saved info
-   * @param {string}
+
    */
   async addSong() {
     const res = await sandBoxApi.post('', ProxyState.currentSong)

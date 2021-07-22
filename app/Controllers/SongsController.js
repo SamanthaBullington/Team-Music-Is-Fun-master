@@ -28,13 +28,10 @@ function _drawCurrentSong() {
 
 /**Draws the Users saved songs to the page */
 function _drawPlaylist() {
-  const songs = ProxyState.songs
+  const playlist = ProxyState.playlist
   const currentSong = ProxyState.currentSong || {}
   let template = ''
-  songs.forEach(s => template += `<li class"action" onclick="app.songController.setCurrentSong('${s.id}')">${s.title}</li>`)
-  if (!template) {
-    template += '<p>No Songs :(</p>'
-  }
+  playlist.forEach(s => template += s.Template)
   document.getElementById('playlist').innerHTML = template
 }
 
@@ -44,7 +41,16 @@ export default class SongsController {
     ProxyState.on('songs', _drawResults)
     ProxyState.on('currentSong', _drawCurrentSong)
     ProxyState.on('playlist', _drawPlaylist)
+    this.getMySongs()
+    _drawPlaylist()
     //TODO Don't forget to register your listeners and get your data
+  }
+  async getMySongs() {
+    try {
+      await songService.getMySongs()
+    } catch (error) {
+      console.error('failed to get sandbox songs' + error)
+    }
   }
 
   /**Takes in the form submission event and sends the query to the service */
@@ -60,7 +66,7 @@ export default class SongsController {
   }
   /**
    * Takes in a song id and sends it to the service in order to add it to the users playlist
-   * @param {string}
+
    */
   async addSong() {
     try {
