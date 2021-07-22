@@ -8,7 +8,7 @@ function _drawResults() {
   let template = ''
   songs.forEach(s => template += s.Template)
   document.getElementById('songs').innerHTML = template
-  console.log('draw fucntion')
+  console.log('draw function')
 }
 
 /**Draws the Users saved songs to the page */
