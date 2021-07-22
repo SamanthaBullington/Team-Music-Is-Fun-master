@@ -13,13 +13,10 @@ export default class Song {
   get Template() {
     return `
     <div class="bg-light m-3 p-3 shadow">
-    <div class="card-columns">
-        <div class="card">
-            // <img class="" src="" alt="">
-            <div class="card-body">
-            </div>
-        </div>
-        <p>${this.artist} - ${this.title}</p>
+    <div class="card text-center">
+            <img class="img-fluid" src="${this.albumArt}" alt="">
+            <p><b>${this.artist}</b></p>
+            <p><em>${this.title}</em></p>
     </div>
 </div>
         `;
