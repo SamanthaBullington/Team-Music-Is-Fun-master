@@ -10,7 +10,7 @@ class AppState extends EventEmitter {
    * @type {Song[]} */
   playlist = []
 
-  currentSong = []
+  currentSong = null
 }
 
 export const ProxyState = new Proxy(new AppState(), {

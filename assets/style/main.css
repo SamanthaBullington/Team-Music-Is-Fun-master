@@ -10695,4 +10695,12 @@ main {
   flex-grow: 1;
 }
 
+.song:hover {
+  cursor: pointer;
+}
+
+.sidebar {
+  min-height: 85.5vh;
+}
+
 /*# sourceMappingURL=main.css.map */

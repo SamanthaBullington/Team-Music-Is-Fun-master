@@ -21,6 +21,14 @@ class SongsService {
       });
   }
 
+  setCurrentSong(id) {
+    const song = ProxyState.songs.find(s => s.id === id)
+    if (!song) {
+      throw new Error("Invalid Song ID")
+    }
+    ProxyState.currentSong = song
+    ProxyState.songs = ProxyState.songs
+  }
   /**
    * Retrieves the saved list of songs from the sandbox
    */
@@ -31,9 +39,14 @@ class SongsService {
   /**
    * Takes in a song id and sends it from the search results to the sandbox to be saved.
    * Afterwords it will update the store to reflect saved info
-   * @param {string} id
+   * @param {string}
    */
-  addSong(id) {
+  async addSong() {
+    const res = await sandBoxApi.post('', ProxyState.currentSong)
+    console.log(res.data);
+    const newSong = new Song(res.data)
+    ProxyState.songs = [...ProxyState.songs, newSong]
+    ProxyState.currentSong = newSong
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
   }
